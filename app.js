@@ -29,6 +29,10 @@ const farmProductRoutes = require('./Routes/farmProductRoutes');
 // Import Order route module
 const orderRouter = require('./Routes/orderRoutes');
 
+// Route to serve the home page
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 // farm product routes
 app.use('/api/v1', farmProductRoutes);
 
@@ -38,10 +42,6 @@ app.use("/api/v1", userRoutes);
 // // User Order Route
 // app.use('/api/v1/', orderRouter);
 
-// Route to serve the home page
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
 
 const start = async () => {
     try {
