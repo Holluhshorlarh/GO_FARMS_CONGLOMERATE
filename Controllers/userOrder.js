@@ -14,7 +14,9 @@ exports.createOrder = async (req, res) => {
     if (!product) {
     return res.status(400).json({message: "Product not found"})
     }
-
+    if (productName !== product.productName ) {
+        return res.status(400).json("Invalid product")
+    }
     // Calculate the total price of the order
     const totalPrice = price * quantity;
 
