@@ -31,7 +31,10 @@ const orderRouter = require('./Routes/orderRoutes');
 
 // Route to serve the home page
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  // res.sendFile(__dirname + '/public/index.html');
+  return res.status(200).json({
+    message:"Welcome to gofarms 🛤"
+  })
 });
 // farm product routes
 app.use('/api/v1', farmProductRoutes);
