@@ -49,7 +49,7 @@ const start = async () => {
         useNewUrlParser: true,            // Set to true to avoid deprecation warnings
         useUnifiedTopology: true,         // Allows the use of the new Server Discover and Monitoring engine
       });
-      console.log('Connected to database');
+      console.log('Connected to database.');
       app.listen(PORT, () => {                     // listen to server on specified port
         console.log(`Server started on port ${PORT}`);
       });
