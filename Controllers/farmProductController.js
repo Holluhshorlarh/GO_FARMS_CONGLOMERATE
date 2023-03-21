@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const FarmProduct = require('../models/farmProductModel');
+const FarmProduct = require('../Models/farmProductModel');
 
 exports.getProductsByCategory = async (req, res) => {
   try {
