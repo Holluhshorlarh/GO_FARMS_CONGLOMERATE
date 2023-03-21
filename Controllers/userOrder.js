@@ -15,7 +15,7 @@ exports.createOrder = async (req, res) => {
     return res.status(400).json({message: "Product not found"})
     }
     if (productName !== product.productName ) {
-        return res.status(400).json("Invalid product")
+        return res.status(400).json({message:"Invalid product"})
     }
     // Calculate the total price of the order
     const totalPrice = price * quantity;
@@ -40,3 +40,19 @@ exports.createOrder = async (req, res) => {
     return res.status(201).json({error});
   }
 };
+
+exports.updateOrder = async (req, res) => {
+    try {
+        const {quantity, price} = req.body
+        const orderId = req.params.orderId 
+        const totalPrice = quantity * price
+        const order = await Order.findByIdAndUpdate(orderId, {quantity, price: totalPrice}, {new: true});
+        if (!Order) {
+            return res.status(400).json({message: "Order not found"})
+        }
+        return res.status(200).json({message: "Order updated successfully"})
+    } catch  (error) {
+        return res.status(201).json({error});
+      }
+    };
+    
