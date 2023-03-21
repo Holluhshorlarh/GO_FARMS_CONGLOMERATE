@@ -50,7 +50,7 @@ exports.updateOrder = async (req, res) => {
         if (!Order) {
             return res.status(400).json({message: "Order not found"})
         }
-        return res.status(200).json({message: "Order updated successfully"})
+        return res.status(200).json({message: "Order updated successfully!"})
     } catch  (error) {
         return res.status(201).json({error});
       }
