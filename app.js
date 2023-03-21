@@ -24,7 +24,7 @@ const {dbUrl, PORT} = process.env;
 const userRoutes = require('./Routes/userRoutes');
 
 // Import farm product route module
-const farmProductRoutes = require('./routes/farmProductRoutes');
+const farmProductRoutes = require('./Routes/farmProductRoutes');
 
 // Import Order route module
 const orderRouter = require('./Routes/orderRoutes');
