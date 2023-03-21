@@ -43,7 +43,7 @@ app.use('/api/v1', farmProductRoutes);
 app.use("/api/v1", userRoutes);
 
 // User Order Route
-app.use('/api/v1/', orderRouter);
+app.use("/api/v1", orderRouter);
 
 
 const start = async () => {
