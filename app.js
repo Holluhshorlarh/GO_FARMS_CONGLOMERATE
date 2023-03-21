@@ -42,8 +42,8 @@ app.use('/api/v1', farmProductRoutes);
 // User routes
 app.use("/api/v1", userRoutes);
 
-// // User Order Route
-// app.use('/api/v1/', orderRouter);
+// User Order Route
+app.use('/api/v1/', orderRouter);
 
 
 const start = async () => {

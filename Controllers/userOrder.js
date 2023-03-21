@@ -1,40 +1,54 @@
-// const { Order } = require("../models/orderModel");
-// const Joi = require("joi");
-// async function createOrder(req, res, next) {
-//   try {
-//     const userId = req.user._id; // get user ID from authenticated request
+const Joi = require('joi');
+const Product = require("../Models/farmProductModel");
+const User = require("../Models/userModel");
+const Order = require("../Models/orderModel");
 
-//     // validate request body using Joi
-//     const schema = Joi.object({
-//       products: Joi.array().items(
-//         Joi.object({
-//           name: Joi.string().required(),
-//         })
-//       ).min(1).required()
-//     });
-//     const { error, value } = schema.validate(req.body);
-//     if (error) {
-//       return res.status(400).json({ error: error.details[0].message });
-//     }
-//     const { products } = value;
+exports.createOrder = async (req, res, next) => {
+  try {
+    // Validate the request body using Joi
+    const schema = Joi.object({
+      quantity: Joi.number().required(),
+    });
+    const { error, value } = schema.validate(req.body);
+    if (error) {
+      throw new Error(error.details[0].message);
+    }
 
-//     // calculate total price of all products selected by user
-//     const totalPrice = products.reduce((acc, product) => acc + product.price, 0);
+    // Get the user ID from the request object
+    const userId = req.user._id;
 
-//     // create order object
-//     const order = new Order({
-//       user: userId,
-//       product: products,
-//       quantity: products.length,
-//       price: totalPrice
-//     });
+    // Get the product ID from the request object
+    const productId = req.params.productId;
 
-//     // save order to database
-//     await order.save();
+    // Find the product by ID and check if it exists
+    const product = await Product.findById(productId);
+    if (!product) {
+      throw new Error(`Product with ID ${productId} not found`);
+    }
 
-//     res.status(201).json(order);
-//   } catch (err) {
-//     next(err);
-//   }
-// }
+    // Calculate the total price of the order
+    const price = product.price * value.quantity;
 
+    // Find the user by ID and check if it exists
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error(`User with ID ${userId} not found`);
+    }
+
+    // Create a new order and save it to the database
+    const order = new Order({
+      user: userId,
+      products: [{ productId: productId, quantity: value.quantity }],
+      price,
+    });
+    await order.save();
+
+    // Update the user's orders list
+    user.orders.push(order._id);
+    await user.save();
+
+    res.status(201).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
