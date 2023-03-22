@@ -29,6 +29,9 @@ const farmProductRoutes = require('./Routes/farmProductRoutes');
 // Import Order route module
 const orderRouter = require('./Routes/orderRoutes');
 
+// Admin route
+const adminRouter = require("./Routes/adminRoutes");
+
 // Route to serve the home page
 app.get('/', (req, res) => {
   return res.status(200).json({
@@ -43,6 +46,9 @@ app.use("/api/v1", userRoutes);
 
 // User Order Route
 app.use("/api/v1", orderRouter);
+
+// admin route
+app.use("api/v1", adminRouter);
 
 
 const start = async () => {
