@@ -39,7 +39,7 @@ Clone the repository to your specified directory in your local machine using the
 ---
 - Change directory into the project directory using cd go-farms.
 - Install the project dependencies using the command **yarn install.**
-- Create a **.env** file in the root directory of the project and add the necessary environment variables. See .**..env** sample for an example.
+- Create a **.env** file in the root directory of the project and add the necessary environment variables. See .**...env** sample for an example.
 Start the server using the command yarn start
 
 ---
