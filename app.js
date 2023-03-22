@@ -48,7 +48,7 @@ app.use("/api/v1", userRoutes);
 app.use("/api/v1", orderRouter);
 
 // admin route
-app.use("api/v1", adminRouter);
+app.use("/api/v1", adminRouter);
 
 
 const start = async () => {
