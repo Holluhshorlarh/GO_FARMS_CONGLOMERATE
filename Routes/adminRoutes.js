@@ -5,10 +5,10 @@ const { getAllUsers } = require('../Controllers/Admin');
 const { getAllOrders } = require('../Controllers/Admin');
 
 // Get all users (admin only)
-router.get('/users', roleBasedAccess(['admin']), getAllUsers);
+router.get('/admin/users', roleBasedAccess(['admin']), getAllUsers);
 
 // Get all orders (admin only)
-router.get('/orders', roleBasedAccess(['admin']), getAllOrders);
+router.get('/admin/orders', roleBasedAccess(['admin']), getAllOrders);
 
 
 module.exports = router;
