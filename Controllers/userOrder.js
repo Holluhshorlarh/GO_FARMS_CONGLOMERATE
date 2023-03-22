@@ -47,7 +47,7 @@ exports.updateOrder = async (req, res) => {
         const orderId = req.params.orderId 
         const totalPrice = quantity * price
         const order = await Order.findByIdAndUpdate(orderId, {quantity, price: totalPrice}, {new: true});
-        if (!orderId) {
+        if (!order) {
             return res.status(400).json({message: "Order not found"})
         }
         return res.status(200).json({message: "Order updated successfully!"})
