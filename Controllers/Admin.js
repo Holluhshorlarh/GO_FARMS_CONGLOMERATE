@@ -1,5 +1,5 @@
-const { Order } = require('../models/order');
-const { User } = require('../models/user');
+const { Order } = require('../Models/orderModel');
+const { User } = require('../Models/userModel');
 
 // Get all orders
 exports.getAllOrders = async (req, res, next) => {
